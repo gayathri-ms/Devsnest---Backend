@@ -1,0 +1,26 @@
+Hello Everyonehiiiii
+
+var fs=require('fs');
+
+fs.mkdirSync("foldername");
+
+fs.writeFileSync("foldername/filename","content", (err) => {
+	if(err)
+	{
+	console.log("error occured");
+	}
+})
+
+fs.appendFileSync("foldername/filename","content2");
+
+fs.readFileSync("foldername/filename", "utf-8");
+
+fs.renameSync("foldername/filename", "foldername/new_filename");
+
+Delete File
+
+fs.unlinkSync("foldername/filename");
+
+Delete Folder
+
+fs.rmdirSync("foldername");

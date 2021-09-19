@@ -44,6 +44,7 @@ const response = (req,res) => {
 // app.get("/user/:name" , checkAdmin , response);
 
 
+
 app.get("/user" , response);
 
 app.get("/hey" , (req,res) => {

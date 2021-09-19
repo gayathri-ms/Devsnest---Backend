@@ -1,0 +1,91 @@
+PostgreSQL commands:
+
+sudo -u <role name> psql --> switched to and starts psql command prompt
+
+\c dbname username --> switch connection to new database (dbname) under a user specified by
+
+\l --> list all available databases
+
+\dt --> list all tables in current database
+
+\d table_name --> describe a table
+
+\dn --> list all Schemas of current database
+
+\df --> list all functions of current database
+
+\dv --> list all Views of current database
+
+\du --> list all users and their assigned roles
+
+\s --> to display command history
+
+\g --> to execute previous command
+
+\i filename --> to execute psql commands from a file
+
+\timing --> to turn ON/OFF query execution time:w
+
+\e --> to write command in default editor(vim/nano)
+
+\q --> to quit psql
+
+QUERIES:
+
+--> CREATE USER devs WITH PASSSWORD 'password';
+
+--> CREATE DATABASE devs_db;
+
+--> CREATE DATABASE devs_db WITH OWNER devs;
+
+--> GRANT ALL PRIVILEGES ON DATABASE devs_db TO devs;
+
+To switch user and db:
+--> psql -h localhost -U devs devs_db;
+
+--> CREATE TABLE COMPANY(id INT PRIMARY KEY NOT NULL,name TEXT NOT NULL,age INT NOT NULL,address VARCHAR(50),salary DECIMAL );
+
+--> CREATE TABLE DEPARTMENT(id INT PRIMARY KEY NOT NULL,dept CHAR[15] NOT NULL,emp_id INT NOT NULL );
+
+Check schems with \dn
+--> CREATE SCHEMA devs_schema;
+
+--> CREATE TABLE devs_schema.company(id INT NOT NULL,name VARCHAR[50] NOT NULL,age INT,address varchar[100],salary DECIMAL(18,2),PRIMARY KEY(id));
+
+--> DROP SCHEMA devs_schema CASCADE;
+
+Inserting Values:
+
+--> INSERT INTO company(id, name, age, address, salary) VALUES (1,'Rick',21, 'LA', 15000);
+
+
+--> SELECT COUNT(*) FROM company;
+
+Displays only name starting with Ri
+
+--> SELECT * FROM company WHERE name LIKE 'Ri%';
+
+BETWEEN and IN
+
+--> SELECT * FROM company WHERE age BETWEEN 15 AND 25;
+
+--> SELECT * FROM company WHERE age IN(15, 21, 35, 40);
+
+UPDATE:
+
+--> UPDATE company SET salary = 21345.00 WHERE id = 2;
+
+ORDER BY:
+
+--> SELECT * FROM company ORDER BY id;
+
+DELETE a row;
+
+--> DELETE FROM company WHERE id = 1;
+
+REFERENCES:
+
+--> CREATE TABLE customers(cust_id INT NOT NULL,cust_name VARCHAR(20) NOT NULL,PRIMARY KEY(cust_id));
+
+--> CREATE TABLE contacts(contact_id INT NOT NULL,cust_id INT,contact_name VARCHAR(20) NOT NULL, phone VARCHAR(15), email VARCHAR(20), PRIMARY KEY(contact_id),CONSTRAINT fk_cust FOREIGN KEY(cust_id) REFERENCES customers(cust_id)ON DELETE CASCADE);
+
