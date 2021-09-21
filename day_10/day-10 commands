@@ -1,0 +1,77 @@
+For Windows 10 users:
+
+First, you need to sign up an Amazon EC2 instance and save the pem file on your local machine. 
+Then make sure that you have SSH server and SSH client option enabled under the Apps & Feature tab on Windows 10.
+
+Open the Windows power shell and navigate to the directory where you kept your pem file. Execute the below command one by one
+
+$path = ".\aws_key_pair_pem_filename.pem"
+
+
+Reset to remove explicit permissions
+icacls.exe $path /reset
+
+
+Give current user explicit read-permission
+icacls.exe $path /GRANT:R "$($env:USERNAME):(R)"
+
+
+Disable inheritance and remove inherited permissions
+icacls.exe $path /inheritance:r
+
+Later connect to the instance by running the command ssh -i "aws_key_pair_pem_filename.pem" ubuntu@ec2-xx-xxx-xxx-x.us-east-2.compute.amazonaws.com from SSH Client.
+
+
+
+node  --version : to check for the version
+
+sudo apt install curl
+
+ curl -o-https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+
+cat ~/.profile : sets environment variables under path
+
+source ~/.profile : identifies the path
+
+nvm install v12 : installs version 12
+
+nvm ls : lists the version
+
+nvm use v15 : changes from version 12 to 15
+
+npx express-generator
+
+npm install
+
+DEBUG=foldername:* npm start
+
+PORT=8080 npm start - server runs in port 8080
+
+npm install forever -g - forever is needed to run the server in the background
+
+forever start ./bin/www - starts the server in the background
+
+forever list - to check for the port
+
+echo $PORT=8080
+
+forever stopall - stops the server
+
+SOME IMPORTANT COMMANDS :
+
+vim ./bin/www - file gets changed in the terminal
+
+Press I : changes to insert mode
+
+Then press esc and run :wq to save the changes
+
+.exit - to exit out of the instance
+
+cd - : to go back to the previous directory
+
+rm -rf foldername - deletes the folder
+
+
+
+
+
